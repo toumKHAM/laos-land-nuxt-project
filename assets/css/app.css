@@ -1,2 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@font-face{
+    font-family:Lao;
+    src: url('../fonts/PhetsarathOT.woff');
+}
+.fontLao{
+    font-family:Lao;
+}
+@font-face{
+    font-family:Eng;
+    src: url('../fonts/TIMES.TTF');
+}
+.fontEng{
+    font-family:Eng;
+}

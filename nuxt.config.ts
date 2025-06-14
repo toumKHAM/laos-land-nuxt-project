@@ -6,5 +6,6 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  css: ["~/assets/css/app.css"],
+  css: ["~/assets/css/app.css",'@fortawesome/fontawesome-free/css/all.min.css'],
+  modules: ['@nuxt/icon','@pinia/nuxt']
 })
