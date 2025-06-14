@@ -27,11 +27,14 @@
                 <!-- search -->
                 <div class="font-bold fontEng">{{ 'Title' }}</div>
                 <!-- end search -->
-                
             </div>
+            
+        </div>
+        <div class="flex-1 px-3 text-right">
+            <h1 class="fontEng">Admin</h1>
+            <span class="fontLao">ຜູ້ຄຸ້ມຄອງລະບົບ</span>
         </div>
         <div class="flex-0">
-            Admin
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">

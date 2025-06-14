@@ -203,13 +203,13 @@
                 <a href="/" aria-current="page" aria-label="Homepage" class="flex-0 btn btn-ghost px-2">
                     <img width="32" height="32" :src="bol_logo">
                         
-                    <div class="font-title inline-flex text-lg md:text-2xl fontLao">ລະບົບ</div>
+                    <div class="font-title inline-flex text-lg md:text-2xl fontEng">LaosLand.la</div>
                 </a>
             </div>
 
             <div class="h-4"></div>
 
-            <ul class="menu px-4 py-0 fontLao">
+            <ul class="menu px-4 py-0 w-auto fontLao">
                 <!-- loop menu -->
                 <li v-for="menu in menus">
                     <!-- level 1 has sub -->
