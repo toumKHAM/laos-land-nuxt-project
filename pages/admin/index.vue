@@ -3,7 +3,7 @@
 
 <template>
     <h1>Login</h1>
-    <NuxtLink to="/admin/v1/dashboard">
-        <button class="btn btn-success">Dashboard</button>
+    <NuxtLink to="/admin/v1/home">
+        <button class="btn btn-success">Home</button>
     </NuxtLink>
 </template>

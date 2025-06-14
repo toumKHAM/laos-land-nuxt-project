@@ -1,10 +1,7 @@
 <script setup>
     import picture from '@/assets/images/admin-picture.png'
     import bol_logo from '@/assets/images/bol_logo.png'
-
-    // import { useLayoutStore } from '@/stores/layout'
-
-    // const layoutStore = useLayoutStore()
+    const layoutStore = useLayoutStore()
 
 </script>
 <template>
@@ -23,9 +20,9 @@
                     <span class="font-title text-base-content text-lg md:text-2xl fontLao">ລະບົບ</span>
                 </a>
             </div>
-            <div class="hidden w-full max-w-sm lg:flex">
+            <div class="hidden w-full  lg:flex"><!-- max-w-sm -->
                 <!-- search -->
-                <div class="font-bold fontEng">{{ 'Title' }}</div>
+                <div class="font-bold text-xl fontLao">{{ layoutStore.title }}</div>
                 <!-- end search -->
             </div>
             

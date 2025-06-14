@@ -1,45 +1,36 @@
 <script setup>
     import bol_logo from '@/assets/images/bol_logo.png'
-    // import MenuIcon from '@/components/icons/MenuIcon.vue'
 
-    // import { useRouter } from 'vue-router'
-    // const router = useRouter()
-
-    // const onClickMenu = (event)=>{
-    //     // go to router link
-    //     const link_path = event.currentTarget.getAttribute('href');
-    //     router.push({path:link_path})
-    // }
-
+    const pre_fix = "/admin/v1"
     const menus = [
         // level 1 no sub 
         {
             main_menu: "ໜ້າຫຼັກ",
-            main_icon: {icon:'fa-solid fa-house',color:'',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-house',color:'#666',sized:'18px'},
             sub: false,
-            main_link: '/'
+            main_link: pre_fix+'/home'
         },
         // level 1 has sub
         {
             main_menu: "ຜະລິດຕະພັນ",
-            main_icon: {icon:'fa-solid fa-cart-shopping',color:'',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-cart-shopping',color:'#666',sized:'18px'},
             sub: true,
             sub1: [
                 // level 2 no sub
                 {
                     sub1_menu: "ຈັດການຂໍ້ມູນດິນ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/test'
+                    sub1_link: pre_fix+'/product/land'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຈັດການຂໍ້ມູນອາຄານ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/product/building'
                 },
             ],
             main_link: ''
@@ -47,24 +38,24 @@
         // level 1 has sub
         {
             main_menu: "ການບໍລິການ",
-            main_icon: {icon:'fa-solid fa-share-from-square',color:'',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-share-from-square',color:'#666',sized:'18px'},
             sub: true,
             sub1: [
                 // level 2 no sub
                 {
                     sub1_menu: "ບັນທຶກການຂາຍ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/test'
+                    sub1_link: pre_fix+'/service/sale'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ບັນທຶກການເຊົ່າ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/service/rent'
                 },
             ],
             main_link: ''
@@ -72,139 +63,96 @@
         // level 1 has sub
         {
             main_menu: "ຈັດການຂໍ້ມູນທົ່ວໄປ",
-            main_icon: {icon:'fa-solid fa-gear',color:'',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-gear',color:'#666',sized:'18px'},
             sub: true,
             sub1: [
                 // level 2 no sub
                 {
                     sub1_menu: "ຜູ້ໃຊ້ລະບົບ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/test'
+                    sub1_link: pre_fix+'/master/user'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຂໍ້ມູນລາຍລະອຽດບຸກຄົນ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/master/person'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຂໍ້ມູນທີ່ຕັ້ງ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/master/location'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຂໍ້ມູນອັດຕາແລກປ່ຽນ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/master/exchange_rate'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຂໍ້ມູນລະຫັດອະສັງຫາ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/master/laosland_id'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຂໍ້ມູນປະເພດຍ່ອຍຜະລິດຕະພັນ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/master/sub_type'
                 },
                 // level 2 no sub
                 {
                     sub1_menu: "ຂໍ້ມູນອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກຂອງຜະລິດຕະພັນ",
-                    sub1_icon: {icon:'fa-solid fa-circle',color:'',sized:'8px'},
+                    sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
                     sub: false,
                     sub2: [],
-                    sub1_link: '/build/vueapp'
+                    sub1_link: pre_fix+'/master/advantage'
                 },
             ],
             main_link: ''
         },
         // level 1 no sub 
         {
-            main_menu: "ຂໍ້ມູນຕ້ອງການຂາຍ",
-            main_icon: {icon:'fa-solid fa-calendar',color:'',sized:'18px'},
+            main_menu: "ຂໍ້ມູນຂາຍ",
+            main_icon: {icon:'fa-solid fa-calendar',color:'#666',sized:'18px'},
             sub: false,
-            main_link: '/'
+            main_link: pre_fix+'/customer/sale'
         },
         // level 1 no sub 
         {
-            main_menu: "ຂໍ້ມູນຂາຍແລ້ວ",
-            main_icon: {icon:'fa-solid fa-calendar-check',color:'',sized:'18px'},
+            main_menu: "ຂໍ້ມູນຊື້ແລ້ວ",
+            main_icon: {icon:'fa-solid fa-calendar-check',color:'#666',sized:'18px'},
             sub: false,
-            main_link: '/'
+            main_link: pre_fix+'/customer/buy'
         },
-
-        // // level 1 has sub
-        // {
-        //     main_menu: "System Process",
-        //     main_icon: {icon:'list-check',color:'#63E6BE'},
-        //     sub: true,
-        //     sub1: [
-        //         // level 2 has sub
-        //         {
-        //             sub1_menu: "Master Data",
-        //             sub1_icon: {icon:'gear',color:'rgb(43 52 64)'},
-        //             sub: true,
-        //             sub2: [
-        //                 {
-        //                     sub2_menu: "User",
-        //                     sub2_link: "/masterdata/user"
-        //                 },
-        //                 {
-        //                     sub2_menu: "Role",
-        //                     sub2_link: "/masterdata/role"
-        //                 }
-        //             ],
-        //             sub1_link: ''
-        //         },
-        //         // level 2 has sub
-        //         {
-        //             sub1_menu: "Report",
-        //             sub1_icon: {icon:'chart-simple',color:'rgb(43 52 64)'},
-        //             sub: true,
-        //             sub2: [
-        //                 {
-        //                     sub2_menu: "Report 1",
-        //                     sub2_link: "/report/report1"
-        //                 },
-        //                 {
-        //                     sub2_menu: "Report 2",
-        //                     sub2_link: "/report/report2"
-        //                 }
-        //             ],
-        //             sub1_link: ''
-        //         },
-        //     ],
-        //     main_link: ''
-        // }
     ]
 </script>
 
 <template>
     <div class="drawer-side z-40" style="scroll-behavior: smooth; scroll-padding-top: 5rem;">
         <label for="drawer" class="drawer-overlay" aria-label="Close menu"></label>
-        <aside class="bg-base-100 min-h-screen w-64">
-            <div class="bg-base-100 sticky top-0 z-20 hidden items-center gap-2 bg-opacity-90 px-4 py-2 backdrop-blur lg:flex shadow-sm">
-                <a href="/" aria-current="page" aria-label="Homepage" class="flex-0 btn btn-ghost px-2">
-                    <img width="32" height="32" :src="bol_logo">
-                        
-                    <div class="font-title inline-flex text-lg md:text-2xl fontEng">LaosLand.la</div>
-                </a>
+        <aside class="bg-base-100 min-h-screen w-64 border-r-1 border-base-300">
+            <div class="bg-base-100 sticky top-0 z-20 hidden items-center gap-2 bg-opacity-90 px-4 py-2 backdrop-blur lg:flex shadow-sm" style="padding-bottom: 16px;padding-top: 16px;">
+                <NuxtLink :to="`${pre_fix}/home`">
+                    <div class="flex">
+                        <img width="32" height="32" :src="bol_logo">
+                        <div class="font-title inline-flex text-lg md:text-2xl fontEng" style="margin-left: 8px;">LaosLand.la</div>
+                    </div>
+                </NuxtLink>
             </div>
 
             <div class="h-4"></div>
@@ -229,34 +177,31 @@
                                 </h2>
                                 <ul v-if="sub1.sub">
                                     <li v-for="sub2 in sub1.sub2"> 
-                                        <a :href="sub2.sub2_link" class="group"
-                                            @click.prevent="onClickMenu"> 
+                                        <NuxtLink :to="sub2.sub2_link" class="group"> 
                                             <span>{{ sub2.sub2_menu }}</span> 
-                                        </a>
+                                        </NuxtLink>
                                     </li>
                                 </ul>
 
                                 <!-- level 2 no sub -->
-                                <a v-else :href="sub1.sub1_link" class="group flex items-center gap-4 px-1.5"
-                                    @click.prevent="onClickMenu">
+                                <NuxtLink v-else :to="sub1.sub1_link" class="group flex items-center gap-4 px-1.5">
                                     <span>
                                         <MenuIcon :icons="sub1.sub1_icon.icon" :colors="sub1.sub1_icon.color" :sized="sub1.sub1_icon.sized"></MenuIcon>
                                     </span> 
                                     <span>{{ sub1.sub1_menu }}</span> 
-                                </a>
+                                </NuxtLink>
                             </li>
                         </ul>
 
                     </details>
 
                     <!-- level 1 no sub -->
-                    <a v-else :href="menu.main_link" class="group fontLao"
-                        @click.prevent="onClickMenu">
+                    <NuxtLink v-else :to="menu.main_link" class="group fontLao ">
                         <span>
                             <MenuIcon :icons="menu.main_icon.icon" :colors="menu.main_icon.color" :sized="menu.main_icon.sized"></MenuIcon>
                         </span> 
                         <span>{{ menu.main_menu }}</span> 
-                    </a>
+                    </NuxtLink>
 
                 </li>
 
@@ -267,3 +212,15 @@
         </aside>
     </div>
 </template>
+
+<style>
+    .router-link-exact-active{
+        --tw-outline-style: none;
+        color: var(--menu-active-fg);
+        background-color: var(--menu-active-bg);
+        background-size: auto, calc(var(--noise) * 100%);
+        background-image: none, var(--fx-noise);
+        outline-style: none;
+        box-shadow: 0 2px calc(var(--depth) * 3px) -2px var(--menu-active-bg);
+    }
+</style>

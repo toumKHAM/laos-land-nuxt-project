@@ -1,4 +1,6 @@
+<script setup>
 
+</script>
 <template>
     <div>
       <div class="bg-base-100 drawer lg:drawer-open">
