@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   css: [
     "~/assets/css/app.css",
     '@fortawesome/fontawesome-free/css/all.min.css',
+    '@/assets/css/vue-good-table-custom.css'
   ],
   modules: ['@nuxt/icon','@pinia/nuxt'],
 })
