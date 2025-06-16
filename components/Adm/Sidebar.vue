@@ -217,10 +217,12 @@
     .router-link-exact-active{
         --tw-outline-style: none;
         color: var(--menu-active-fg);
-        background-color: var(--menu-active-bg);
+        /* background-color: var(--menu-active-bg); */
+        background-color: #422ad5;
         background-size: auto, calc(var(--noise) * 100%);
         background-image: none, var(--fx-noise);
         outline-style: none;
-        box-shadow: 0 2px calc(var(--depth) * 3px) -2px var(--menu-active-bg);
+        /* box-shadow: 0 2px calc(var(--depth) * 3px) -2px var(--menu-active-bg); */
+        box-shadow: 0 2px calc(var(--depth) * 3px) -2px #422ad5;
     }
 </style>
