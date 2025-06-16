@@ -214,7 +214,7 @@
 </template>
 
 <style>
-    .router-link-exact-active{
+    ul li .router-link-exact-active{
         --tw-outline-style: none;
         color: var(--menu-active-fg);
         /* background-color: var(--menu-active-bg); */
