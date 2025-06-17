@@ -13,4 +13,9 @@ export default defineNuxtConfig({
     '@/assets/css/vue-good-table-custom.css'
   ],
   modules: ['@nuxt/icon','@pinia/nuxt'],
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE_URL
+    }
+  }
 })
