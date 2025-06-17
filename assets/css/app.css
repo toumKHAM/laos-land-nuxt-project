@@ -25,3 +25,22 @@
     }
     font-size: 16px;
 }
+/* sweetalert icon */
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+    background-color: #00d390 !important;
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+    border: .25em solid #00d390 !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+    background-color: #422ad5 !important;
+}
+
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+    background-color: #f31b1b !important;
+}
+div:where(.swal2-icon).swal2-error {
+    border-color: #f31b1b !important;
+}

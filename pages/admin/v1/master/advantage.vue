@@ -28,32 +28,64 @@
         )
     )
 
-    const handleEdit = (id)=>{
-        console.log("edit:"+id);
+    const loading = ref(false)
+    function updateLoaing(status){
+        loading.value = status
     }
-    const handleDelete = (id)=>{
-        console.log("delete:"+id);
-    }
+    const clikId = ref(0)
 
-    function showAlert() {
-        document.getElementById('add_dialog').close()
+    function showSuccessAlert(message) {
         Swal.fire({
             title: 'ສຳເລັດ!',
-            text: 'ຂໍ້ມູນຖືກບັນທຶກແລ້ວ',
+            text: message, //'ຂໍ້ມູນຖືກບັນທຶກແລ້ວ'
             icon: 'success',
             confirmButtonText: 'ຕົກລົງ'
         })
     }
+    function showErrorAlert(message) {
+        Swal.fire({
+            title: 'ຜິດພາດ!',
+            text: message, //'ການບັນທຶກຂໍ້ມູນເກີດຂໍ້ຜິດພາດ'
+            icon: 'error',
+            confirmButtonText: 'ຕົກລົງ'
+        })
+    }
+    
+    const clickEdit = (id)=>{
+        clikId.value = id
+        document.getElementById('edit_dialog').showModal()
+    }
+
+    function getAvt(){
+        console.log("get All");
+    }
+    function getAvtById(id){
+        console.log("get avt id:"+id);
+    }
+    function addAvt(avt_name){
+        console.log("add avt_name:"+avt_name);
+    }
+    function updateAvt(avt){
+        console.log("update avt:"+avt);
+    }
+    function deleteAvtById(id){
+        console.log("delete id:"+id);
+    }
+
+    // ----------
 </script>
 
 <template>
     <div class="mx-6 my-3">
-        
         <div class="flex justify-between">
+            <!-- add btn -->
             <button onclick="add_dialog.showModal()" class="btn btn-primary mb-3 fontLao">ເພີ່ມໃໝ່</button>
+            <!-- search input -->
             <input v-model="search" type="text" placeholder="ພິມຄົ້ນຫາ..." class="input fontLao w-50" />
         </div>
+
         <div class="h-100 overflow-x-auto rounded-box border border-base-content/8 bg-base-100  table-pin-rows table-pin-cols">
+            <!-- table -->
             <table class="table table-zebra table-md table-pin-rows table-pin-cols fontLao">
                 <thead>
                     <tr class="text-base font-bold">
@@ -72,44 +104,39 @@
                             <div v-else-if="avt.active=='N'" class="badge badge-soft badge-error">ບໍ່ນໍາໃຊ້</div>
                         </td>
                         <td>
-                            <i class="fa-solid fa-pen-to-square text-xl cursor-pointer text-primary mr-3" @click="handleEdit(avt.id)"></i>
-                            <i class="fa-solid fa-trash text-xl cursor-pointer text-error" @click="handleDelete(avt.id)"></i>
+                            <i class="fa-solid fa-pen-to-square text-xl cursor-pointer text-primary mr-3" @click="clickEdit(avt.id)"></i>
+                            <i class="fa-solid fa-trash text-xl cursor-pointer text-error" @click="deleteAvtById(avt.id)"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
 
-    <dialog id="add_dialog" class="modal">
-        <div class="modal-box w-11/12 max-w-3xl">
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <h3 class="text-lg font-bold fontLao">ເພີ່ມຂໍ້ມູນອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກຂອງຜະລິດຕະພັນ</h3>
-            <div class="py-4">
-                <div class="grid grid-cols-3 gap-4 items-center">
-                    <div class="text-right fontLao">
-                        <label>ຊື່ <span class="text-red-600">*</span> :</label>
-                    </div>
-                    <div class="col-span-2">
-                        <input type="text" placeholder="ພິມສິ່ງອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກ" class="input fontLao" />
-                    </div>
-                </div>
-                <div class="grid grid-cols-3 gap-4 py-4">
-                    <div></div>
-                    <div>
-                        <button @click="showAlert" class="btn btn-primary fontLao">ບັນທຶກ</button>
-                    </div>
-                </div>
-            </div>
-            
+        <div class="text-center my-3">
+            <span class="fontLao">ທັງໝົດ <span class="fontEng font-bold">{{ data?.length }}</span> ລາຍການ</span>
+        </div>
+        <div v-if="loading" class="text-center my-3">
+            <span class="fontLao"> Loading ...</span>
         </div>
 
-        <form method="dialog" class="modal-backdrop">
-            <button>close</button>
-        </form>
-    </dialog>
+    </div>
+
+    <AvtAddDialog 
+        :addAvt="addAvt"
+        :showSuccessAlert="showSuccessAlert"
+        :showErrorAlert="showErrorAlert" 
+        :updateLoaing="updateLoaing" >
+    </AvtAddDialog>
+
+    <AvtEditDialog 
+        :clikId="clikId"
+        :getAvtById="getAvtById"
+        :updateAvt="updateAvt"
+        :showSuccessAlert="showSuccessAlert"
+        :showErrorAlert="showErrorAlert" 
+        :updateLoaing="updateLoaing" >
+    </AvtEditDialog>
+
     
 </template>
 
