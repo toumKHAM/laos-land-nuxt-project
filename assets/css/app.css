@@ -44,3 +44,7 @@ div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
 div:where(.swal2-icon).swal2-error {
     border-color: #f31b1b !important;
 }
+div:where(.swal2-icon).swal2-warning {
+    border-color: #ff8c28 !important;
+    color: #ff8c28 !important;
+}

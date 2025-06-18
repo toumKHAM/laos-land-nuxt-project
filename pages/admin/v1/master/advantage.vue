@@ -2,6 +2,7 @@
     const layoutStore = useLayoutStore()
     onMounted(()=>{
         layoutStore.changeTitle('ຂໍ້ມູນອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກຂອງຜະລິດຕະພັນ',['ຈັດການຂໍ້ມູນທົ່ວໄປ','ຂໍ້ມູນອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກຂອງຜະລິດຕະພັນ'])
+        getAvt()
     })
     // ----------------------------------- //
     import Swal from 'sweetalert2'
@@ -29,12 +30,10 @@
     )
 
     const loading = ref(false)
-    function updateLoaing(status){
-        loading.value = status
-    }
-    const clikId = ref(0)
+    const avt_name = ref('') // for add
+    const avt = reactive({}) // for view and for update
 
-    function showSuccessAlert(message) {
+    const showSuccessAlert = (message)=> {
         Swal.fire({
             title: 'ສຳເລັດ!',
             text: message, //'ຂໍ້ມູນຖືກບັນທຶກແລ້ວ'
@@ -42,7 +41,7 @@
             confirmButtonText: 'ຕົກລົງ'
         })
     }
-    function showErrorAlert(message) {
+    const showErrorAlert = (message)=> {
         Swal.fire({
             title: 'ຜິດພາດ!',
             text: message, //'ການບັນທຶກຂໍ້ມູນເກີດຂໍ້ຜິດພາດ'
@@ -50,26 +49,47 @@
             confirmButtonText: 'ຕົກລົງ'
         })
     }
-    
-    const clickEdit = (id)=>{
-        clikId.value = id
+
+    const getAvt = ()=> {
+        console.log("get All");
+    }
+    const getAvtById = (id)=>{
+        avt.id = id
+        //----- request get avt ------//
+        console.log("request get avt by id:",avt.id);
         document.getElementById('edit_dialog').showModal()
     }
 
-    function getAvt(){
-        console.log("get All");
+    const addNewAvt = ()=> {
+        if(avt_name.value != ''){
+            //----- request save ------//
+            console.log("request save avt by name:",avt_name.value);
+            document.getElementById('add_dialog').close()
+            showSuccessAlert('ຂໍ້ມູນຖືກບັນທຶກແລ້ວ')
+            // showErrorAlert('ການບັນທຶກຂໍ້ມູນເກີດຂໍ້ຜິດພາດ')
+            avt_name.value = ''
+        }
     }
-    function getAvtById(id){
-        console.log("get avt id:"+id);
+    const updateAvt = ()=> {
+        //----- request update ------//
+        console.log("request update avt :",avt);
+        document.getElementById('edit_dialog').close()
+        showSuccessAlert('ຂໍ້ມູນຖືກບັນທຶກແລ້ວ')
     }
-    function addAvt(avt_name){
-        console.log("add avt_name:"+avt_name);
-    }
-    function updateAvt(avt){
-        console.log("update avt:"+avt);
-    }
-    function deleteAvtById(id){
-        console.log("delete id:"+id);
+    const deleteAvtById = (id)=> {
+        Swal.fire({
+            title: 'ຕ້ອງການລຶບແທ້ບໍ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'ຕົກລົງ',
+            cancelButtonText: 'ຍົກເລີກ',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //----- request get avt ------//
+                console.log("request delete avt by id:",id);
+                Swal.fire('ສຳເລັດ!', 'ຂໍ້ມູນໄດ້ຖືກລຶບແລ້ວ.', 'success')
+            }
+        })
     }
 
     // ----------
@@ -104,7 +124,7 @@
                             <div v-else-if="avt.active=='N'" class="badge badge-soft badge-error">ບໍ່ນໍາໃຊ້</div>
                         </td>
                         <td>
-                            <i class="fa-solid fa-pen-to-square text-xl cursor-pointer text-primary mr-3" @click="clickEdit(avt.id)"></i>
+                            <i class="fa-solid fa-pen-to-square text-xl cursor-pointer text-primary mr-3" @click="getAvtById(avt.id)"></i>
                             <i class="fa-solid fa-trash text-xl cursor-pointer text-error" @click="deleteAvtById(avt.id)"></i>
                         </td>
                     </tr>
@@ -121,21 +141,78 @@
 
     </div>
 
-    <AvtAddDialog 
-        :addAvt="addAvt"
-        :showSuccessAlert="showSuccessAlert"
-        :showErrorAlert="showErrorAlert" 
-        :updateLoaing="updateLoaing" >
-    </AvtAddDialog>
+    <!-- add dialog -->
+    <dialog id="add_dialog" class="modal">
+        <div class="modal-box w-11/12 max-w-3xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg font-bold fontLao">ເພີ່ມຂໍ້ມູນອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກຂອງຜະລິດຕະພັນ</h3>
+            <div class="py-4">
+                <div class="grid grid-cols-3 gap-4 items-center">
+                    <div class="text-right fontLao">
+                        <label>ຊື່ <span class="text-red-600">*</span> :</label>
+                    </div>
+                    <div class="col-span-2">
+                        <input type="text" v-model="avt_name" placeholder="ພິມສິ່ງອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກ" class="input fontLao" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 py-4">
+                    <div></div>
+                    <div>
+                        <button @click="addNewAvt" class="btn btn-primary fontLao">ບັນທຶກ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 
-    <AvtEditDialog 
-        :clikId="clikId"
-        :getAvtById="getAvtById"
-        :updateAvt="updateAvt"
-        :showSuccessAlert="showSuccessAlert"
-        :showErrorAlert="showErrorAlert" 
-        :updateLoaing="updateLoaing" >
-    </AvtEditDialog>
+    <!-- eidt dialog -->
+    <dialog id="edit_dialog" class="modal">
+        <div class="modal-box w-11/12 max-w-3xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg font-bold fontLao">ແກ້ໄຂຂໍ້ມູນອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກຂອງຜະລິດຕະພັນ</h3>
+            <div class="py-4">
+                <div class="grid grid-cols-3 gap-4 items-center">
+                    <div class="text-right fontLao">
+                        <label>ຊື່ <span class="text-red-600">*</span> :</label>
+                    </div>
+                    <div class="col-span-2">
+                        <input type="text" v-model="avt.name" placeholder="ພິມສິ່ງອຳນວຍຄວາມສະດວກແລະຫຍຸ້ງຍາກ" class="input fontLao" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 items-center mt-4">
+                    <div class="text-right fontLao">
+                        <label>ສະຖານະ <span class="text-red-600">*</span> :</label>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="label cursor-pointer mr-5">
+                            <input type="radio" name="active" value="Y" v-model="avt.active" class="radio radio-primary" />
+                            <span class="label-text text-base-content fontLao">ນໍາໃຊ້</span> 
+                        </label>
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="active" value="N" v-model="avt.active" class="radio radio-error" />
+                            <span class="label-text text-base-content fontLao">ບໍ່ນໍາໃຊ້</span> 
+                        </label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 py-4">
+                    <div></div>
+                    <div>
+                        <button @click="updateAvt" class="btn btn-primary fontLao">ບັນທຶກ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 
     
 </template>
