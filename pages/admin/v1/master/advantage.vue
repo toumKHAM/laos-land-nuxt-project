@@ -58,6 +58,7 @@
         //----- request get avt ------//
         console.log("request get avt by id:",avt.id);
         document.getElementById('edit_dialog').showModal()
+        
     }
 
     const addNewAvt = ()=> {
@@ -68,6 +69,8 @@
             showSuccessAlert('ຂໍ້ມູນຖືກບັນທຶກແລ້ວ')
             // showErrorAlert('ການບັນທຶກຂໍ້ມູນເກີດຂໍ້ຜິດພາດ')
             avt_name.value = ''
+
+            
         }
     }
     const updateAvt = ()=> {
@@ -75,6 +78,7 @@
         console.log("request update avt :",avt);
         document.getElementById('edit_dialog').close()
         showSuccessAlert('ຂໍ້ມູນຖືກບັນທຶກແລ້ວ')
+        
     }
     const deleteAvtById = (id)=> {
         Swal.fire({
@@ -88,6 +92,7 @@
                 //----- request get avt ------//
                 console.log("request delete avt by id:",id);
                 Swal.fire('ສຳເລັດ!', 'ຂໍ້ມູນໄດ້ຖືກລຶບແລ້ວ.', 'success')
+                
             }
         })
     }
@@ -130,14 +135,21 @@
                     </tr>
                 </tbody>
             </table>
+            
+            
         </div>
 
         <div class="text-center my-3">
             <span class="fontLao">ທັງໝົດ <span class="fontEng font-bold">{{ data?.length }}</span> ລາຍການ</span>
         </div>
-        <div v-if="loading" class="text-center my-3">
-            <span class="fontLao"> Loading ...</span>
-        </div>
+
+        <LoadingOverlay 
+            :active="loading" 
+            :is-full-page="false" 
+            :can-cancel="true" 
+            :color="'#422ad5'"
+            :loader="'dots'" 
+        />
 
     </div>
 
