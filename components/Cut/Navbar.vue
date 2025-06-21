@@ -1,0 +1,137 @@
+<script setup>
+    //////parameters//////
+    const selectLang = ref("EN");
+    const dropdownMenu = ref(null);
+    const desktopDropdownOpen = ref(null);
+    ///////function////////
+    const changeLanguage = (lang) => {
+    selectLang.value = lang;
+    closeDropdownMenu();
+    };
+    const closeDropdownMenu = () => {
+    if (dropdownMenu.value) {
+        dropdownMenu.value.blur();
+    }
+    if (desktopDropdownOpen.value) {
+        desktopDropdownOpen.value.blur();
+    }
+    };
+</script>
+
+<template>
+    <div class="navbar shadow-xl bg-blue-300">
+        <!-- Mobile menu button -->
+        <div class="navbar-start">
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost md:hidden">
+            <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+                ></path>
+            </svg>
+            </div>
+            <ul
+            tabindex="0"
+            ref="dropdownMenu"
+            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-70"
+            >
+            <!-- Search input for mobile -->
+            <div class="mb-2 w-full">
+                <div class="form-control w-full">
+                <input
+                    id="search_input"
+                    type="text"
+                    placeholder="Search..."
+                    class="input input-bordered w-full"
+                />
+                </div>
+            </div>
+            <!-- Language options -->
+            <div class="fontLao w-full ml-2"><b>ພາສາ</b></div>
+            <li>
+                <a
+                @click="changeLanguage('LA')"
+                :class="
+                    selectLang == 'LA'
+                    ? 'font-bold fontLao text-blue-700'
+                    : 'fontLao'
+                "
+                >LA - ພາສາລາວ</a
+                >
+            </li>
+            <li>
+                <a
+                @click="changeLanguage('EN')"
+                :class="
+                    selectLang == 'EN'
+                    ? 'font-bold fontEng text-blue-700'
+                    : 'fontEng'
+                "
+                >EN - English</a
+                >
+            </li>
+            <li>
+                <a
+                @click="changeLanguage('ZH')"
+                :class="
+                    selectLang == 'ZH'
+                    ? 'font-bold fontEng text-blue-700'
+                    : 'fontEng'
+                "
+                >ZH - Chinese</a
+                >
+            </li>
+            </ul>
+        </div>
+        <a class="btn btn-ghost text-2xl font-bold">LaosLand.la</a>
+        </div>
+
+        <!-- Center logo - hidden on mobile, visible on tablet and up -->
+        <div class="navbar-center hidden sm:flex">
+        <div>
+            <img id="logon-laoland" src="@/assets/images/navbar_img.jpeg" alt="" />
+        </div>
+        </div>
+
+        <!-- Right side controls -->
+        <div class="navbar-end">
+        <!-- Search input - hidden on mobile, visible on tablet and up -->
+        <input
+            type="text"
+            placeholder="Search"
+            class="input input-bordered w-full md:w-auto hidden md:block"
+        />
+
+        <!-- Language dropdown - hidden on mobile (shown in mobile menu) -->
+        <div class="dropdown dropdown-end hidden md:block">
+            <div tabindex="0" role="button" class="btn btn-ghost">
+            <div class="w-10 rounded-full fontLao">ພາສາ</div>
+            </div>
+            <ul
+            ref="desktopDropdownOpen"
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-32 p-2 shadow"
+            >
+            <li>
+                <a @click="changeLanguage('LA')" class="fontLao">LA - ພາສາລາວ</a>
+            </li>
+            <li>
+                <a @click="changeLanguage('EN')" class="fontEng">EN - English</a>
+            </li>
+            <li>
+                <a @click="changeLanguage('ZH')" class="fontEng">ZH - Chinese</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</template>
