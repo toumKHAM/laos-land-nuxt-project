@@ -2,6 +2,14 @@
     import picture from '@/assets/images/admin-picture.png'
     import bol_logo from '@/assets/images/bol_logo.png'
     const layoutStore = useLayoutStore()
+    const router = useRouter()
+    const dropdownMenu = ref(null);
+    const closeDropdownMenu = (link) => {
+        if (dropdownMenu.value) {
+            dropdownMenu.value.blur();
+        }
+        router.push(link)
+    };
 
 </script>
 <template>
@@ -15,7 +23,7 @@
                 </label>
             </span>
             <div class="flex items-center gap-2 lg:hidden">
-                <a href="/" aria-current="page" aria-label="ລະບົບ" class="flex-0 btn btn-ghost gap-1 px-2 md:gap-2">
+                <a href="/admin/v1/home" aria-current="page" aria-label="ລະບົບ" class="flex-0 btn btn-ghost gap-1 px-2 md:gap-2">
                     <img class="h-6 w-6 md:h-8 md:w-8" width="32" height="32" :src="bol_logo">
                     <span class="font-title text-base-content text-lg md:text-2xl fontLao">ລະບົບ</span>
                 </a>
@@ -38,10 +46,10 @@
                         <img alt="Tailwind CSS Navbar component" :src="picture" />
                     </div>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <li> <a class="justify-between"> Profile <span class="badge">New</span> </a> </li>
-                    <li> <a>Change Password</a> </li>
-                    <NuxtLink to="/admin"><li> <a>Logout</a> </li></NuxtLink>
+                <ul tabindex="0" ref="dropdownMenu" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li> <a class="text-base fontLao" @click="closeDropdownMenu('/admin/v1/home')" > ຂໍ້ມູນໂປຣຟາຍ </a> </li>
+                    <li> <a class="text-base fontLao" @click="closeDropdownMenu('/admin/v1/home')" >ປ່ຽນລະຫັດຜ່ານ</a> </li>
+                    <li> <a class="text-base fontLao" @click="closeDropdownMenu('/admin')" >ອອກຈາກລະບົບ</a> </li>
                 </ul>
             </div>
         </div>

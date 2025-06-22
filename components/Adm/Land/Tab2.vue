@@ -12,7 +12,9 @@
     </div>
     <div class="card  bg-base-100 shadow-sm">
         <div class="card-body">
-            <div v-show="activeStep=='step1'">step1</div>
+            <div v-show="activeStep=='step1'">
+                <AdmLandStep1></AdmLandStep1>
+            </div>
             <div v-show="activeStep=='step2'">step2</div>
             <div v-show="activeStep=='step3'">step3</div>
         </div>

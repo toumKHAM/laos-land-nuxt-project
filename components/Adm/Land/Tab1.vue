@@ -19,7 +19,7 @@
             <div class="flex-1">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Laos Land ID:</legend>
-                    <input type="text" class="input" placeholder="Type here" />
+                    <input type="text" class="input fontLao" placeholder="ພິມລະຫັດ Laos Land ID" />
                 </fieldset>
             </div>
             <div class="flex-1 md:mx-3">
@@ -43,7 +43,7 @@
                 </fieldset>
             </div>
         </div>
-
+        <div class="divider"></div>
         <!-- Table -->
         <div class="mt-3 h-120 overflow-x-auto rounded-box border border-base-content/8 bg-base-100  table-pin-rows table-pin-cols">
             <!-- table -->
