@@ -1,5 +1,5 @@
-# git clone https://github.com/toumKHAM/laos-land-nuxt-project.git
+git clone https://github.com/toumKHAM/laos-land-nuxt-project.git
 
-# bun install
+bun install
 
-# bun run dev
+bun run dev
