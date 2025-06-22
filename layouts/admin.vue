@@ -8,7 +8,7 @@
           <div class="drawer-content">
               <div class=" bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-sm">
                   <!-- navbar -->
-                  <AdmNavbar></AdmNavbar>
+                  <AdmLayNavbar></AdmLayNavbar>
               </div>
   
               <div class="max-w-[100vw] px-2 pt-2 pb-6 xl:pr-2">
@@ -16,7 +16,7 @@
                   <div class="mockup-browser border border-base-300 px-3" style="padding-bottom: 12px;">
                       <!-- title -->
                       <div class="mockup-browser-toolbar">
-                        <AdmBreadcrumbs></AdmBreadcrumbs>
+                        <AdmLayBreadcrumbs></AdmLayBreadcrumbs>
                       </div>
                       <div class="border-t border-base-300"></div>
                       <!-- body -->
@@ -24,11 +24,11 @@
   
                       
                   </div>
-                  <AdmFooter></AdmFooter>
+                  <AdmLayFooter></AdmLayFooter>
               </div>
           </div>
   
-          <AdmSidebar></AdmSidebar>
+          <AdmLaySidebar></AdmLaySidebar>
           
       </div>
     </div>
