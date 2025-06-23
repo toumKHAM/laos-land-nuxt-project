@@ -10,37 +10,49 @@
         { id: 8, ll_id: 'LL0008', product_id: 'LAND-008',sub_type:'ດິນປຸກສ້າງ',service_id:'ເຊົ່າ',address:'ບ.ໂພນທັນ, ມ.ສີນາກ, ນະຄອນຫຼວງວຽງຈັນ', auth:'12',create_by:'Ker', interest:'1' },
         { id: 9, ll_id: 'LL0009', product_id: 'LAND-009',sub_type:'ດິນວ່າງເປົ່າ',service_id:'ຂາຍ-ເຊົ່າ',address:'ບ.ໂພນທັນ, ມ.ສີນາກ, ນະຄອນຫຼວງວຽງຈັນ', auth:'12',create_by:'Ker', interest:'0' },
     ])
+
+    const search_ii_id = ref('')
+    const filteredData = computed(() =>
+        data.value.filter(avt =>
+            Object.values(avt).some( value =>
+                String(value).toLowerCase().includes(search_ii_id.value.toLowerCase())
+            )
+        )
+    )
 </script>
 
 <template>
     <div class="mx-4 my-3">
         <h1 class="fontLao text-lg font-bold">ເງື່ອນໄຂຄົ້ນຫາ</h1>
-        <div class="flex flex-col md:flex-row w-full">
-            <div class="flex-1">
+        <div class="flex flex-col md:flex-row md:items-end w-full">
+            <div class="flex-3">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Laos Land ID:</legend>
-                    <input type="text" class="input fontLao" placeholder="ພິມລະຫັດ Laos Land ID" />
+                    <input type="text" v-model="search_ii_id" class="input w-full fontLao" placeholder="ພິມລະຫັດ Laos Land ID" />
                 </fieldset>
             </div>
-            <div class="flex-1 md:mx-3">
+            <div class="flex-3 md:mx-3">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend fontLao">ແຂວງ:</legend>
-                    <select class="select">
+                    <select class="select w-full">
                         <option>Chrome</option>
                         <option>FireFox</option>
                         <option>Safari</option>
                     </select>
                 </fieldset>
             </div>
-            <div class="flex-1">
+            <div class="flex-3 md:mr-3">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend fontLao">ເຂດ:</legend>
-                    <select class="select">
+                    <select class="select w-full">
                         <option>Chrome</option>
                         <option>FireFox</option>
                         <option>Safari</option>
                     </select>
                 </fieldset>
+            </div>
+            <div class="flex-1 mt-3">
+                <button class="btn btn-primary fontLao" style="margin-bottom: 4px;">ຄົ້ນຫາ</button>
             </div>
         </div>
         <div class="divider"></div>
@@ -61,7 +73,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="land,i in data" :key="land.id" class="hover:bg-base-300 white-nowrap">
+                    <tr v-for="land,i in filteredData" :key="land.id" class="hover:bg-base-300 white-nowrap">
                         <td class="fontEng text-center">{{ land.ll_id }}</td>
                         <td class="fontEng text-center">{{ land.product_id }}</td>
                         <td class="">{{ land.sub_type }}</td>

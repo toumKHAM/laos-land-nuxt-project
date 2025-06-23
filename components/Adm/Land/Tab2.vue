@@ -26,10 +26,18 @@
 
 <template>
     <div class="flex justify-around my-3 text-white text-xl fontEng font-bold">
-        <div v-for="step,index in steps" @click="activeStep=step"
-            class="w-16 h-16 rounded-full flex items-center justify-center cursor-pointer"
-            :class="step== activeStep ? 'bg-primary': 'bg-gray-500'"
-        >{{ index+1 }}</div>
+        <div class="grid grid-cols-2 gap-3">
+            <div v-show="activeStep=='step1'" class="w-16 h-16 rounded-full flex items-center justify-center bg-primary">1</div>
+            <div v-show="activeStep!='step1'" class="w-16 h-16 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 4rem;"></i></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div v-show="activeStep!='step3'" class="w-16 h-16 rounded-full flex items-center justify-center" :class="activeStep=='step2'?'bg-primary':'bg-gray-500'">2</div>
+            <div v-show="activeStep=='step3'" class="w-16 h-16 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 4rem;"></i></div>
+        </div>
+        <div>
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" :class="activeStep=='step3'?'bg-primary':'bg-gray-500'">3</div>
+        </div>
+        
     </div>
     <div class="card bg-base-100 shadow-sm" style="box-shadow: 0 0px 3px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.15);">
         <div class="card-body">

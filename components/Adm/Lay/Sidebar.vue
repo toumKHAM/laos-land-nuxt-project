@@ -6,14 +6,14 @@
         // level 1 no sub 
         {
             main_menu: "ໜ້າຫຼັກ",
-            main_icon: {icon:'fa-solid fa-house',color:'#666',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-house',color:'#000',sized:'18px'},
             sub: false,
             main_link: pre_fix+'/home'
         },
         // level 1 has sub
         {
             main_menu: "ຜະລິດຕະພັນ",
-            main_icon: {icon:'fa-solid fa-cart-shopping',color:'#666',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-cart-shopping',color:'#000',sized:'18px'},
             sub: true,
             sub1: [
                 // level 2 no sub
@@ -38,7 +38,7 @@
         // level 1 has sub
         {
             main_menu: "ການບໍລິການ",
-            main_icon: {icon:'fa-solid fa-share-from-square',color:'#666',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-share-from-square',color:'#000',sized:'18px'},
             sub: true,
             sub1: [
                 // level 2 no sub
@@ -63,7 +63,7 @@
         // level 1 has sub
         {
             main_menu: "ຈັດການຂໍ້ມູນທົ່ວໄປ",
-            main_icon: {icon:'fa-solid fa-gear',color:'#666',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-gear',color:'#000',sized:'18px'},
             sub: true,
             sub1: [
                 // level 2 no sub
@@ -128,14 +128,14 @@
         // level 1 no sub 
         {
             main_menu: "ຂໍ້ມູນຂາຍ",
-            main_icon: {icon:'fa-solid fa-calendar',color:'#666',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-calendar',color:'#000',sized:'18px'},
             sub: false,
             main_link: pre_fix+'/customer/sale'
         },
         // level 1 no sub 
         {
             main_menu: "ຂໍ້ມູນຊື້ແລ້ວ",
-            main_icon: {icon:'fa-solid fa-calendar-check',color:'#666',sized:'18px'},
+            main_icon: {icon:'fa-solid fa-calendar-check',color:'#000',sized:'18px'},
             sub: false,
             main_link: pre_fix+'/customer/buy'
         },
@@ -224,5 +224,8 @@
         outline-style: none;
         /* box-shadow: 0 2px calc(var(--depth) * 3px) -2px var(--menu-active-bg); */
         box-shadow: 0 2px calc(var(--depth) * 3px) -2px #422ad5;
+    }
+    ul li .router-link-exact-active i{
+        color: #ffffff !important;
     }
 </style>
