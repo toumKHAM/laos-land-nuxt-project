@@ -4,7 +4,8 @@
 /* for fonts */
 @font-face{
     font-family:Lao;
-    src: url('../fonts/PhetsarathOT.woff');
+    src: url('../fonts/newtest.woff2');
+    /* src: url('../fonts/PhetsarathOT.woff'); */
 }
 .fontLao, .swal2-title, .swal2-html-container, .swal2-actions{
     font-family:Lao;

@@ -23,7 +23,7 @@
 
 <template>
     <div class="mx-4 my-3">
-        <h1 class="fontLao text-lg font-bold">ເງື່ອນໄຂຄົ້ນຫາ</h1>
+        <!-- <h1 class="fontLao text-lg font-bold">ເງື່ອນໄຂຄົ້ນຫາ</h1> -->
         <div class="flex flex-col md:flex-row md:items-end w-full">
             <div class="flex-3">
                 <fieldset class="fieldset">
