@@ -1,5 +1,26 @@
 <script setup>
-const note_land = ref('<p>ພິມລາຍລະອຽດ...</p>')
+    const note_land = ref('<p>ພິມລາຍລະອຽດ...</p>')
+    // -- ສຳລັບ ຮູບພາບແລະວີດີໂອດິນ -- //
+    const imageFile = ref([])
+    const imageUrl = ref([])
+    const fileType = ref([])
+    const file_input = ref(null)
+
+    function onFileChangeForLand(event) {
+    const file = event.target.files[0]
+    if (file && file.type.startsWith('image/')) {
+        fileType.value.push('img')
+        } else if (file && file.type.startsWith('video/')) {
+        fileType.value.push('vdo')
+        }
+        imageFile.value.push(file)
+        imageUrl.value.push(URL.createObjectURL(file))
+    }
+    function removeImage(index) {
+        imageUrl.value.splice(index, 1); 
+        fileType.value.splice(index, 1); 
+    }
+    // -- ຈົບ ສຳລັບ ຮູບພາບແລະວີດີໂອດິນ -- //
 </script>
 <template>
     <div class="grid lg:grid-cols-2 gap-8 fontLao text-base">
@@ -31,17 +52,19 @@ const note_land = ref('<p>ພິມລາຍລະອຽດ...</p>')
                     <input type="text" placeholder="" class="input w-full" />
                 </div>
             </div>
-            <!-- 4 -->
+            <!-- 4 ຮູບພາບແລະວີດີໂອດິນ -->
             <div class="grid grid-cols-6 gap-3 mb-3">
                 <div class="text-right col-span-2">
                     <label>ຮູບພາບແລະວີດີໂອດິນ <span class="dao">*</span>:</label>
                 </div>
                 <div class="col-span-4">
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" placeholder="" class="input w-full" />
-                        <input type="text" placeholder="" class="input w-full" />
-                        <input type="text" placeholder="" class="input w-full" />
-                        <input type="text" placeholder="" class="input w-full" />
+                        <AdmLandImgPreview v-for="image_url,index in imageUrl" 
+                            :index="index" 
+                            :imageUrl="image_url" 
+                            :fileType="fileType[index]"
+                            :removeImage="removeImage"
+                        ></AdmLandImgPreview>
                     </div>
                 </div>
             </div>
@@ -49,9 +72,16 @@ const note_land = ref('<p>ພິມລາຍລະອຽດ...</p>')
             <div class="grid grid-cols-6 gap-3 mb-3">
                 <div class="col-span-2"></div>
                 <div class="col-span-4">
-                    <button class="btn">
+                    <button class="btn" @click="file_input.click()">
                         <i class="fa-solid fa-plus mr-1" style="font-size: 14px;"></i>ເພີ່ມຮູບພາບ
                     </button>
+                    <input
+                        type="file"
+                        ref="file_input"
+                        accept="image/*,video/*"
+                        @change="onFileChangeForLand"
+                        class="hidden"
+                    />
                 </div>
             </div>
             <!-- 6 -->
