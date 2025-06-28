@@ -11,7 +11,7 @@
         placeholder="Type a tag and press Enter or comma"
       />
 
-    <div class="flex flex-wrap gap-2 p-2 border rounded-lg min-h-[3rem]">
+    <div class="flex flex-wrap gap-2 p-2 border rounded-md min-h-[3rem]">
       <span
         v-for="tag, index in tags"
         :key="index"
@@ -20,8 +20,6 @@
         {{ tag }}
         <button class="ml-1" @click="() => removeTag(index)">×</button>
       </span>
-
-      
     </div>
   </div>
 </template>

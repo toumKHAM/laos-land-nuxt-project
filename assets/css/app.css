@@ -19,7 +19,7 @@
 }
 
 /* input */
-.input {
+.input, .select, .textarea {
     &:focus, &:focus-within {
         --input-color: #422ad5a1;
         box-shadow: 0 1px var(--input-color);

@@ -1,4 +1,9 @@
 <script setup>
+    const layoutStore = useLayoutStore()
+    onMounted(()=>{
+        layoutStore.changeTitle('ຂໍ້ມູນດິນທັງໝົດ',['ຜະລິດຕະພັນ','ຈັດການຂໍ້ມູນດິນ','ຂໍ້ມູນດິນທັງໝົດ'])
+    })
+    // ---------------------------------------------------- //
     const data = ref([
         { id: 1, ll_id: 'LL0001', product_id: 'LAND-001',sub_type:'ດິນນາ',service_id:'ຂາຍ',address:'ບ.ໂພນທັນ, ມ.ສີນາກ, ນະຄອນຫຼວງວຽງຈັນ', auth:'11',create_by:'Toum', interest:'0' },
         { id: 2, ll_id: 'LL0002', product_id: 'LAND-002',sub_type:'ດິນປຸກສ້າງ',service_id:'ເຊົ່າ',address:'ບ.ໂພນທັນ, ມ.ສີນາກ, ນະຄອນຫຼວງວຽງຈັນ', auth:'12',create_by:'Ker', interest:'1' },
@@ -19,6 +24,7 @@
             )
         )
     )
+
 </script>
 
 <template>

@@ -17,12 +17,37 @@
             sub: true,
             sub1: [
                 // level 2 no sub
+                // {
+                //     sub1_menu: "ຈັດການຂໍ້ມູນດິນ",
+                //     sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
+                //     sub: false,
+                //     sub2: [],
+                //     sub1_link: pre_fix+'/product/land'
+                // },
+                // level 2 has sub
                 {
                     sub1_menu: "ຈັດການຂໍ້ມູນດິນ",
                     sub1_icon: {icon:'fa-solid fa-circle',color:'#666',sized:'8px'},
-                    sub: false,
-                    sub2: [],
-                    sub1_link: pre_fix+'/product/land'
+                    sub: true,
+                    sub2: [
+                        {
+                            sub2_menu: "ຂໍ້ມູນດິນທັງໝົດ",
+                            sub2_link: pre_fix+'/product/land/all_land'
+                        },
+                        {
+                            sub2_menu: "ເພີ່ມດິນ",
+                            sub2_link: pre_fix+'/product/land/add_land'
+                        },
+                        {
+                            sub2_menu: "ຂໍ້ມູນດີນເກີນ3ເດືອນ",
+                            sub2_link: pre_fix+'/product/land/3month_land'
+                        },
+                        {
+                            sub2_menu: "ກຳນົດສິດຂໍ້ມູນດິນ",
+                            sub2_link: pre_fix+'/product/land/assign_land'
+                        },
+                    ],
+                    sub1_link: ''
                 },
                 // level 2 no sub
                 {
@@ -171,7 +196,7 @@
                         <ul>
                             <li v-for="sub1 in menu.sub1">
                                 <!-- level 2 has sub -->
-                                <h2 v-if="sub1.sub" class="menu-title flex items-center gap-4 px-1.5">
+                                <h2 v-if="sub1.sub" class=" flex items-center gap-4 px-1.5">
                                     <MenuIcon :icons="sub1.sub1_icon.icon" :colors="sub1.sub1_icon.color" :sized="sub1.sub1_icon.sized"></MenuIcon>
                                     {{ sub1.sub1_menu }}
                                 </h2>
@@ -216,16 +241,25 @@
 <style>
     ul li .router-link-exact-active{
         --tw-outline-style: none;
-        color: var(--menu-active-fg);
+        /* color: var(--menu-active-fg); */
+        color: #422ad5;
         /* background-color: var(--menu-active-bg); */
-        background-color: #422ad5;
+        background-color: #e0e7ff;
         background-size: auto, calc(var(--noise) * 100%);
         background-image: none, var(--fx-noise);
         outline-style: none;
         /* box-shadow: 0 2px calc(var(--depth) * 3px) -2px var(--menu-active-bg); */
-        box-shadow: 0 2px calc(var(--depth) * 3px) -2px #422ad5;
+        box-shadow: 0 2px calc(var(--depth) * 3px) -2px #e0e7ff;
     }
     ul li .router-link-exact-active i{
-        color: #ffffff !important;
+        color: #422ad5 !important;
     }
+    .menu {
+    & :where(li) {
+        & > :not(ul, .menu-title, details, .btn):active, & > :not(ul, .menu-title, details, .btn).menu-active, & > details > summary:active {
+            color: #422ad5;
+            background-color: #e0e7ff;
+        }
+    }
+}
 </style>

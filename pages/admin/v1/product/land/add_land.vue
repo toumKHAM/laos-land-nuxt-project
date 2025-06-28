@@ -1,6 +1,10 @@
 <script setup>
+    const layoutStore = useLayoutStore()
+    onMounted(()=>{
+        layoutStore.changeTitle('ເພີ່ມດິນ',['ຜະລິດຕະພັນ','ຈັດການຂໍ້ມູນດິນ','ເພີ່ມດິນ'])
+    })
+    // ---------------------------------------------------- //
     import Swal from 'sweetalert2'
-    const steps = ref(['step1','step2','step3'])
     const activeStep = ref('step1')
     const nextStep = ()=>{
         if(activeStep.value=='step1') {
@@ -24,18 +28,19 @@
     }
 </script>
 
+
 <template>
-    <div class="flex justify-around my-3 text-white text-xl fontEng font-bold">
+    <div class="flex justify-around my-3 text-white text-sm fontEng font-bold">
         <div class="grid grid-cols-2 gap-3">
-            <div v-show="activeStep=='step1'" class="w-16 h-16 rounded-full flex items-center justify-center bg-primary">1</div>
-            <div v-show="activeStep!='step1'" class="w-16 h-16 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 4rem;"></i></div>
+            <div v-show="activeStep=='step1'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center bg-primary">1</div>
+            <div v-show="activeStep!='step1'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 2rem;"></i></div>
         </div>
         <div class="grid grid-cols-2 gap-3">
-            <div v-show="activeStep!='step3'" class="w-16 h-16 rounded-full flex items-center justify-center" :class="activeStep=='step2'?'bg-primary':'bg-gray-500'">2</div>
-            <div v-show="activeStep=='step3'" class="w-16 h-16 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 4rem;"></i></div>
+            <div v-show="activeStep!='step3'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center" :class="activeStep=='step2'?'bg-primary':'bg-gray-500'">2</div>
+            <div v-show="activeStep=='step3'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 2rem;"></i></div>
         </div>
         <div>
-            <div class="w-16 h-16 rounded-full flex items-center justify-center" :class="activeStep=='step3'?'bg-primary':'bg-gray-500'">3</div>
+            <div style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center" :class="activeStep=='step3'?'bg-primary':'bg-gray-500'">3</div>
         </div>
         
     </div>
@@ -44,8 +49,12 @@
             <div v-show="activeStep=='step1'">
                 <AdmLandStep1></AdmLandStep1>
             </div>
-            <div v-show="activeStep=='step2'"><AdmLandStep2></AdmLandStep2></div>
-            <div v-show="activeStep=='step3'">step3</div>
+            <div v-show="activeStep=='step2'">
+                <AdmLandStep2></AdmLandStep2>
+            </div>
+            <div v-show="activeStep=='step3'">
+                <AdmLandStep3></AdmLandStep3>
+            </div>
         </div>
     </div>
     <div class="my-5 flex justify-between text-base fontLao">
@@ -54,3 +63,6 @@
         <div v-else><button class="btn btn-primary" @click="nextStep">ຂັ້ນຕອນຕໍ່ໄປ <i class="fa-solid fa-arrow-right"></i></button></div>
     </div>
 </template>
+
+<style scoped>
+</style>

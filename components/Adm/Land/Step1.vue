@@ -209,43 +209,81 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="lg:col-span-2 mb-18">
-            <div class="grid lg:grid-cols-2 gap-8 fontLao text-base">
-                <div class="grid grid-cols-5 gap-3">
-                    <div class="col-span-2 text-right">
-                        <label>ລາຍລະອຽດ(ສຳລັບຂາຍ) <span class="dao">*</span>:</label>
-                    </div>
-                    <div class="col-span-3">
-                        <ClientOnly>
-                            <QuillEditor
-                                v-model:content="note_sale"
-                                contentType="html"
-                                theme="snow"
-                                class="h-96 bg-white fontLao"
-                            />
-                        </ClientOnly>
-                    </div>
+    <div class="flex sm:flex-col lg:flex-row gap-8 fontLao text-base">
+        <div class="flex-1">
+            <div class="grid grid-cols-5 gap-3 mb-2">
+                <div class="text-right col-span-2">
+                    <label>ລາຍລະອຽດ(ສຳລັບຂາຍ) <span class="dao">*</span>:</label>
                 </div>
-
-                <div class="grid grid-cols-5 gap-3 mt-10 lg:mt-1">
-                    <div class="col-span-2 text-right">
-                        <label>ລາຍລະອຽດ(ສຳລັບເຊົ່າ) <span class="dao">*</span>:</label>
-                    </div>
-                    <div class="col-span-3">
-                        <ClientOnly>
-                            <QuillEditor
-                                v-model:content="note_rent"
-                                contentType="html"
-                                theme="snow"
-                                class="h-96 bg-white fontLao"
-                            />
-                        </ClientOnly>
-                    </div>
+            </div>
+            <div>
+                <ClientOnly>
+                    <QuillEditor
+                        v-model:content="note_sale"
+                        contentType="html"
+                        theme="snow"
+                        class="h-96 bg-white fontLao"
+                    />
+                </ClientOnly>
+            </div>
+        </div>
+        <div class="flex-1">
+            <div class="grid grid-cols-5 gap-3 mb-2">
+                <div class="text-right col-span-2">
+                    <label>ລາຍລະອຽດ(ສຳລັບເຊົ່າ) <span class="dao">*</span>:</label>
                 </div>
+            </div>
+            <div>
+                <ClientOnly>
+                    <QuillEditor
+                        v-model:content="note_rent"
+                        contentType="html"
+                        theme="snow"
+                        class="h-96 bg-white fontLao"
+                    />
+                </ClientOnly>
             </div>
         </div>
     </div>
+
+
+    <!-- <div class="lg:col-span-2 mb-18">
+        <div class="grid lg:grid-cols-2 gap-8 fontLao text-base">
+            <div class="grid grid-cols-5 gap-3">
+                <div class="col-span-2 text-right">
+                    <label>ລາຍລະອຽດ(ສຳລັບຂາຍ) <span class="dao">*</span>:</label>
+                </div>
+                <div class="col-span-3">
+                    <ClientOnly>
+                        <QuillEditor
+                            v-model:content="note_sale"
+                            contentType="html"
+                            theme="snow"
+                            class="h-96 bg-white fontLao"
+                        />
+                    </ClientOnly>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-5 gap-3 mt-10 lg:mt-1">
+                <div class="col-span-2 text-right">
+                    <label>ລາຍລະອຽດ(ສຳລັບເຊົ່າ) <span class="dao">*</span>:</label>
+                </div>
+                <div class="col-span-3">
+                    <ClientOnly>
+                        <QuillEditor
+                            v-model:content="note_rent"
+                            contentType="html"
+                            theme="snow"
+                            class="h-96 bg-white fontLao"
+                        />
+                    </ClientOnly>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </template>
 
 <style scoped>

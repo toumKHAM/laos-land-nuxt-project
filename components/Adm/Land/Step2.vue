@@ -21,6 +21,21 @@
         fileType.value.splice(index, 1); 
     }
     // -- ຈົບ ສຳລັບ ຮູບພາບແລະວີດີໂອດິນ -- //
+
+    // -- ສຳລັບ key word tag -- //
+    const tags = ref([])
+    const input_tag = ref('')
+    const addTag = () => {
+        const newTag = input_tag.value.trim().replace(',', '')
+        if (newTag && !tags.value.includes(newTag)) {
+            tags.value.push(newTag)
+        }
+        input_tag.value = ''
+    }
+    const removeTag = (index) => {
+        tags.value.splice(index, 1)
+    }
+    // -- ຈົບ ສຳລັບ key word tag -- //
 </script>
 <template>
     <div class="grid lg:grid-cols-2 gap-8 fontLao text-base">
@@ -71,8 +86,8 @@
             <!-- 5 -->
             <div class="grid grid-cols-6 gap-3 mb-3">
                 <div class="col-span-2"></div>
-                <div class="col-span-4">
-                    <button class="btn" @click="file_input.click()">
+                <div class="col-span-2">
+                    <button class="btn w-full" @click="file_input.click()">
                         <i class="fa-solid fa-plus mr-1" style="font-size: 14px;"></i>ເພີ່ມຮູບພາບ
                     </button>
                     <input
@@ -90,7 +105,38 @@
                     <label>ຮູບພາບໜ້າປົກ <span class="dao">*</span>:</label>
                 </div>
                 <div class="col-span-2">
-                    <input type="text" placeholder="" class="input w-full" />
+                    <button class="btn btn-soft btn-primary w-full" >
+                        ເລືອກຮູບພາບ
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-6 gap-3 flex items-center mb-3">
+                <div class="text-right col-span-2">
+                    <label>Key word ສຳລັບຄົ້ນຫາ <span class="dao">*</span>:</label>
+                </div>
+                <div class="col-span-2">
+                    <input  
+                        v-model="input_tag"
+                        @keydown.enter.prevent="addTag"
+                        @keydown.,.prevent="addTag"
+                        placeholder="ຂາຍດິນ, ...." class="input w-full" 
+                    />
+                </div>
+            </div>
+            <div class="grid grid-cols-6 gap-3 flex items-center mb-3">
+                <div class="text-right col-span-2">
+                </div>
+                <div class="col-span-4">
+                    <div class="flex flex-wrap gap-2 p-2 border border-gray-300 rounded-md min-h-[3rem]">
+                        <span
+                            v-for="tag, index in tags"
+                            :key="index"
+                            class="badge badge-soft badge-primary badge-lg gap-1 fontLao"
+                        >
+                            {{ tag }}
+                            <button class="ml-1" @click="() => removeTag(index)">×</button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
