@@ -134,7 +134,7 @@
                             class="badge badge-soft badge-primary badge-lg gap-1 fontLao"
                         >
                             {{ tag }}
-                            <button class="ml-1" @click="() => removeTag(index)">×</button>
+                            <button class="ml-1 cursor-pointer" @click="() => removeTag(index)">×</button>
                         </span>
                     </div>
                 </div>

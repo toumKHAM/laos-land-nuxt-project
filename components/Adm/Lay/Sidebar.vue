@@ -31,13 +31,14 @@
                     sub: true,
                     sub2: [
                         {
-                            sub2_menu: "ຂໍ້ມູນດິນທັງໝົດ",
-                            sub2_link: pre_fix+'/product/land/all_land'
-                        },
-                        {
                             sub2_menu: "ເພີ່ມດິນ",
                             sub2_link: pre_fix+'/product/land/add_land'
                         },
+                        {
+                            sub2_menu: "ຂໍ້ມູນດິນທັງໝົດ",
+                            sub2_link: pre_fix+'/product/land/all_land'
+                        },
+                        
                         {
                             sub2_menu: "ຂໍ້ມູນດີນເກີນ3ເດືອນ",
                             sub2_link: pre_fix+'/product/land/3month_land'
