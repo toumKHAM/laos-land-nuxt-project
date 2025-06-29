@@ -1,3 +1,11 @@
+<script setup>
+    const props = defineProps({
+        index: Number,
+        fileName: String,
+        removeFile: Function
+    });
+</script>
+
 <template>
     <div class="flex gap-3 items-center mt-3">
         <div class="flex-1">
@@ -14,11 +22,11 @@
                     <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
                     </g>
                 </svg>
-                <input type="text" class="grow" value="1-test.png" disabled />
+                <input type="text" class="grow" :value="props.fileName" disabled />
             </label>
         </div>
         <div class="text-right" style="width: 20px;">
-            <i class="fa-solid fa-trash text-xl cursor-pointer text-error"></i>
+            <i class="fa-solid fa-trash text-xl cursor-pointer text-error" @click="removeFile(props.index)"></i>
         </div>
     </div>
 </template>

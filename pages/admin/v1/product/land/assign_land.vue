@@ -1,0 +1,3 @@
+<template>
+    Assign land
+</template>
