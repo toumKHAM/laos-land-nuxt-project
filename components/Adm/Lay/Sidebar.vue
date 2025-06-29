@@ -1,5 +1,5 @@
 <script setup>
-    import bol_logo from '@/assets/images/bol_logo.png'
+    import logo_icon from '@/assets/images/logo/logo_icon.png'
 
     const pre_fix = "/admin/v1"
     const menus = [
@@ -175,8 +175,8 @@
             <div class="bg-base-100 sticky top-0 z-20 hidden items-center gap-2 bg-opacity-90 px-4 py-2 backdrop-blur lg:flex shadow-sm" style="padding-bottom: 16px;padding-top: 16px;">
                 <NuxtLink :to="`${pre_fix}/home`">
                     <div class="flex">
-                        <img width="32" height="32" :src="bol_logo">
-                        <div class="font-title inline-flex text-lg md:text-2xl fontEng" style="margin-left: 8px;">LaosLand.la</div>
+                        <img width="32" height="32" :src="logo_icon">
+                        <div class="font-title font-bold inline-flex text-lg text-primary md:text-2xl" style="margin-left: 8px;">LaosLand.la</div>
                     </div>
                 </NuxtLink>
             </div>

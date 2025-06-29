@@ -1,6 +1,6 @@
 <script setup>
     import picture from '@/assets/images/admin-picture.png'
-    import bol_logo from '@/assets/images/bol_logo.png'
+    import logo_icon from '@/assets/images/logo/logo_icon.png'
     const layoutStore = useLayoutStore()
     const router = useRouter()
     const dropdownMenu = ref(null);
@@ -23,9 +23,9 @@
                 </label>
             </span>
             <div class="flex items-center gap-2 lg:hidden">
-                <a href="/admin/v1/home" aria-current="page" aria-label="ລະບົບ" class="flex-0 btn btn-ghost gap-1 px-2 md:gap-2">
-                    <img class="h-6 w-6 md:h-8 md:w-8" width="32" height="32" :src="bol_logo">
-                    <span class="font-title text-base-content text-lg md:text-2xl fontLao">ລະບົບ</span>
+                <a href="/admin/v1/home" aria-current="page" aria-label="LAOSLAND.LA9" class="flex-0 btn btn-ghost gap-1 px-2 md:gap-2">
+                    <img class="h-6 w-6 md:h-8 md:w-8" width="32" height="32" :src="logo_icon">
+                    <span class="font-title text-base-content text-primary text-md md:text-lg fontLao">LAOSLAND.LA</span>
                 </a>
             </div>
             <div class="hidden w-full  lg:flex"><!-- max-w-sm -->

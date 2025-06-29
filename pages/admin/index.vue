@@ -1,5 +1,5 @@
 <script setup>
-    import bol_logo from '@/assets/images/bol_logo.png'
+    import logo_login from '@/assets/images/logo/logo_login.png'
     const router = useRouter()
     const checkLogin = ()=>{
         router.push('/admin/v1/home') // ປ່ຽນໄປຫາໜ້າ 
@@ -14,11 +14,8 @@
             
             </div>
             <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                <div class="grid grid-flow-col justify-items-center mt-10">
-                    <h2 class="card-title  text-3xl fontEng">LaosLand.la</h2>
-                </div>
-                <div class="grid grid-flow-col justify-items-center">
-                    <img width="70" height="70" :src="bol_logo">
+                <div class="grid grid-flow-col justify-items-center mt-10 mb-5">
+                    <img width="200" :src="logo_login">
                 </div>
                 <div class="grid grid-flow-col justify-items-center">
                     <p class="text-xl fontEng font-bold">
