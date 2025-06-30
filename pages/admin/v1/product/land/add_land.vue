@@ -1,4 +1,7 @@
 <script setup>
+    useHead({
+        title: 'Admin LaosLand | ເພີ່ມຂໍ້ມູນດິນ'
+    })
     const layoutStore = useLayoutStore()
     onMounted(()=>{
         layoutStore.changeTitle('ເພີ່ມດິນ',['ຜະລິດຕະພັນ','ຈັດການຂໍ້ມູນດິນ','ເພີ່ມດິນ'])
@@ -36,11 +39,11 @@
             <div v-show="activeStep!='step1'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 2rem;"></i></div>
         </div>
         <div class="grid grid-cols-2 gap-3">
-            <div v-show="activeStep!='step3'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center" :class="activeStep=='step2'?'bg-primary':'bg-gray-500'">2</div>
+            <div v-show="activeStep!='step3'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center" :class="activeStep=='step2'?'bg-primary':'bg-gray-400'">2</div>
             <div v-show="activeStep=='step3'" style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-circle-check" style="color: #00d390;font-size: 2rem;"></i></div>
         </div>
         <div>
-            <div style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center" :class="activeStep=='step3'?'bg-primary':'bg-gray-500'">3</div>
+            <div style="height: calc(var(--spacing) * 8);" class="w-8 rounded-full flex items-center justify-center" :class="activeStep=='step3'?'bg-primary':'bg-gray-400'">3</div>
         </div>
         
     </div>

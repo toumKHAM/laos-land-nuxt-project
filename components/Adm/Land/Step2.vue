@@ -225,7 +225,14 @@
                         :updateAvt="updateAvt"
                         :removeAvt="removeAvt"
                     ></AdmLandAvtPreview>
-                    <button class="btn btn-primary" @click="console.log(avts)">Avts</button>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row lg:flex-col md:gap-3 mt-5">
+                <div class="md:flex-2 md:text-right lg:text-left">
+                    <label>ຄຳອະທິບາຍອື່ນໆກ່ຽວກັບດິນຕອນນີ້ <span class="dao">*</span>:</label>
+                </div>
+                <div class="md:flex-3">
+                    <textarea rows="4" class="textarea w-full" placeholder="ພິມຄຳອະທິບາຍອື່ນໆ..."></textarea>
                 </div>
             </div>
 

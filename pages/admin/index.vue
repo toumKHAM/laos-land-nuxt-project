@@ -1,4 +1,7 @@
 <script setup>
+    useHead({
+        title: 'Admin LaosLand | ເຂົ້າສູ່ລະບົບ'
+    })
     import logo_login from '@/assets/images/logo/logo_login.png'
     const router = useRouter()
     const checkLogin = ()=>{

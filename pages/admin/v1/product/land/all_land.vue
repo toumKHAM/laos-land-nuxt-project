@@ -1,4 +1,7 @@
 <script setup>
+    useHead({
+        title: 'Admin LaosLand | ຂໍ້ມູນດິນທັງໝົດ'
+    })
     const layoutStore = useLayoutStore()
     onMounted(()=>{
         layoutStore.changeTitle('ຂໍ້ມູນດິນທັງໝົດ',['ຜະລິດຕະພັນ','ຈັດການຂໍ້ມູນດິນ','ຂໍ້ມູນດິນທັງໝົດ'])

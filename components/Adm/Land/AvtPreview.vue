@@ -6,9 +6,10 @@
         removeAvt: Function
     });
 
-    const avt_id = ref(0)
-    const avt_value = ref('')
-    onMounted(()=>{
+    const avt_id = ref('')
+    const avt_value = ref('Y')
+
+    onUpdated(() => {
         avt_id.value = props.avt.avt_id
         avt_value.value = props.avt.avt_value
     })
@@ -21,7 +22,7 @@
     <div class="flex gap-3 items-center mt-3">
         <div class="flex-1">
             <select v-model="avt_id" class="select w-full">
-                <option value="">ເລືອກ</option>
+                <option value="">ເລືອກສິ່ງອຳນວຍ</option>
                 <option value="1">ໄຟຟ້າ</option>
                 <option value="2">ນໍ້າປະປາ</option>
                 <option value="3">ທາງປູຢາງ</option>
