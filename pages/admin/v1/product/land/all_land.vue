@@ -31,16 +31,16 @@
 </script>
 
 <template>
-    <div class="mx-4 my-3">
+    <div class="mx-2 my-1">
         <!-- <h1 class="fontLao text-lg font-bold">ເງື່ອນໄຂຄົ້ນຫາ</h1> -->
         <div class="flex flex-col md:flex-row md:items-end w-full">
-            <div class="flex-3">
+            <div class="flex-1">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Laos Land ID:</legend>
                     <input type="text" v-model="search_ii_id" class="input w-full fontLao" placeholder="ພິມລະຫັດ Laos Land ID" />
                 </fieldset>
             </div>
-            <div class="flex-3 md:mx-3">
+            <div class="flex-1 md:mx-3">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend fontLao">ແຂວງ:</legend>
                     <select class="select w-full">
@@ -50,7 +50,7 @@
                     </select>
                 </fieldset>
             </div>
-            <div class="flex-3 md:mr-3">
+            <div class="flex-1 md:mr-3">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend fontLao">ເຂດ:</legend>
                     <select class="select w-full">
@@ -60,17 +60,15 @@
                     </select>
                 </fieldset>
             </div>
-            <div class="flex-1 mt-3">
-                <button class="btn btn-primary fontLao" style="margin-bottom: 4px;">ຄົ້ນຫາ</button>
-            </div>
         </div>
-        <div class="divider"></div>
+        
+        <!-- <div class="divider"></div> -->
         <!-- Table -->
         <div class="mt-3 h-120 overflow-x-auto rounded-box border border-base-content/8 bg-base-100  table-pin-rows table-pin-cols">
             <!-- table -->
             <table class="table table-zebra table-md table-pin-rows table-pin-cols fontLao">
                 <thead>
-                    <tr class="text-base font-bold">
+                    <tr>
                         <th class="th text-center fontEng">LaosLand ID</th>
                         <th class="th text-center ">ລະຫັດຜະລິດຕະພັນ</th>
                         <th class="th">ປະເພດ</th>
@@ -98,15 +96,11 @@
                             <div v-else-if="land.auth=='13'" class="badge badge-soft badge-secondary">ລໍຖ້າຢືນຢັນການຂາຍ</div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-soft btn-primary mr-3 fontLao">ລາຍລະອຽດ</button>
-                            <button v-if="land.auth=='11'" class="btn btn-sm btn-soft btn-success mr-3 fontLao">ອະນຸມັດ</button>
-                            <div  v-if="land.interest > 0" class="relative inline-block">
-                                <button class="btn btn-soft btn-info btn-sm  mr-3 fontLao">
-                                    ສົນໃຈ
-                                </button>
-                                <div class="badge badge-secondary badge-xs absolute -top-2 -right-2">{{ land.interest }}</div>
-                            </div>
-                            
+                            <button class="btn btn-sm btn-soft btn-primary mr-3 fontLao" onclick="detail_dialog.showModal()">ລາຍລະອຽດ</button>
+                            <button v-if="land.interest > 0"  class="btn btn-soft btn-info btn-sm  mr-3 fontLao">
+                                ສົນໃຈ <div class="red">({{ land.interest }})</div>
+                            </button>
+                        
 
                         </td>
                     </tr>
@@ -120,6 +114,45 @@
             <span class="fontLao">ທັງໝົດ <span class="fontEng font-bold">{{ data?.length }}</span> ລາຍການ</span>
         </div>
     </div>
+
+    <!-- detail dialog -->
+    <dialog id="detail_dialog" class="modal ">
+        <div class="modal-box w-9/12 h-11/12 max-w-none overflow-y-auto p-0">
+            <div class="sticky top-0 z-10 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                <h3 class="text-lg font-bold fontLao">ຂໍ້ມູນລາຍລະອຽດຂອງດິນ</h3>
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+            </div>
+
+            
+            
+            <div class="p-4">
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                text-base <br>
+                
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 </template>
 
 <style scoped>
@@ -129,5 +162,8 @@
     .th{
         background-color: #422ad5 !important;
         color: white;
+    }
+    .red{
+        color: red;
     }
 </style>
