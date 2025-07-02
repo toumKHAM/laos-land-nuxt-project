@@ -28,6 +28,11 @@
         )
     )
 
+    const land_id = ref(0)
+    const clickDetail = (id)=>{
+        land_id.value = id
+        document.getElementById('detail_dialog').showModal()
+    }
 </script>
 
 <template>
@@ -96,7 +101,7 @@
                             <div v-else-if="land.auth=='13'" class="badge badge-soft badge-secondary">ລໍຖ້າຢືນຢັນການຂາຍ</div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-soft btn-primary mr-3 fontLao" onclick="detail_dialog.showModal()">ລາຍລະອຽດ</button>
+                            <button class="btn btn-sm btn-soft btn-primary mr-3 fontLao" @click="clickDetail(land.id)">ລາຍລະອຽດ</button>
                             <button v-if="land.interest > 0"  class="btn btn-soft btn-info btn-sm  mr-3 fontLao">
                                 ສົນໃຈ <div class="red">({{ land.interest }})</div>
                             </button>
@@ -116,43 +121,7 @@
     </div>
 
     <!-- detail dialog -->
-    <dialog id="detail_dialog" class="modal ">
-        <div class="modal-box w-9/12 h-11/12 max-w-none overflow-y-auto p-0">
-            <div class="sticky top-0 z-10 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-                <h3 class="text-lg font-bold fontLao">ຂໍ້ມູນລາຍລະອຽດຂອງດິນ</h3>
-                <form method="dialog">
-                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-            </div>
-
-            
-            
-            <div class="p-4">
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                text-base <br>
-                
-            </div>
-        </div>
-        <form method="dialog" class="modal-backdrop">
-            <button>close</button>
-        </form>
-    </dialog>
+    <AdmLandDetailDialog :land_id="land_id"></AdmLandDetailDialog>
 </template>
 
 <style scoped>
