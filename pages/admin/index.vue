@@ -28,13 +28,13 @@
                         <img class="hidden md:flex " width="60" :src="logo_icon">
                     </div>
                     <div class="grid grid-flow-col justify-items-center">
-                        <p class="text-xl fontEng font-bold">
-                            Admin
-                            <i class="fa-solid fa-users-gear" style="font-size: 18px;color: #000"></i>
-                        </p>
+                        
                         <p class="text-lg fontLao"> 
                             <i class="fa-solid fa-key" :style="[`font-size: 18px`,`color: #000`]"></i>
                             ເຂົ້າສູ່ລະບົບ
+                        </p>
+                        <p class="text-lg hidden md:flex text-blue-700 fontEng">
+                            LAOSLAND.LA
                         </p>
                     </div>
 
