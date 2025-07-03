@@ -9,12 +9,20 @@
     // ---------------------------------------------------- //
     import Swal from 'sweetalert2'
     const activeStep = ref('step1')
+    const step1Ref = ref(null)
+    const step2Ref = ref(null)
+    const step3Ref = ref(null)
+
     const nextStep = ()=>{
         if(activeStep.value=='step1') {
-            activeStep.value = 'step2'
+            if(step1Ref.value?.handdleSubmit() == true){
+                activeStep.value = 'step2'
+            }
         }
         else if(activeStep.value=='step2'){
-            activeStep.value = 'step3'
+            if(step2Ref.value?.handdleSubmit() == true){
+                activeStep.value = 'step3'
+            }
         }
     }
     const prevStep = ()=>{
@@ -26,8 +34,11 @@
         }
     }
     const clickSave = ()=>{
-        Swal.fire('ສຳເລັດ!', 'ຂໍ້ມູນໄດ້ຖືກບັນທຶກແລ້ວ.', 'success')
-        activeStep.value = 'step1'
+        if(step3Ref.value?.handdleSubmit() == true){
+            Swal.fire('ສຳເລັດ!', 'ຂໍ້ມູນໄດ້ຖືກບັນທຶກແລ້ວ.', 'success')
+            activeStep.value = 'step1'
+        }
+        
     }
 </script>
 
@@ -50,13 +61,13 @@
     <div class="card bg-base-100 shadow-sm" style="box-shadow: 0 0px 3px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.15);">
         <div class="card-body">
             <div v-show="activeStep=='step1'">
-                <AdmLandStep1></AdmLandStep1>
+                <AdmLandStep1 ref="step1Ref"></AdmLandStep1>
             </div>
             <div v-show="activeStep=='step2'">
-                <AdmLandStep2></AdmLandStep2>
+                <AdmLandStep2 ref="step2Ref"></AdmLandStep2>
             </div>
             <div v-show="activeStep=='step3'">
-                <AdmLandStep3></AdmLandStep3>
+                <AdmLandStep3 ref="step3Ref"></AdmLandStep3>
             </div>
         </div>
     </div>

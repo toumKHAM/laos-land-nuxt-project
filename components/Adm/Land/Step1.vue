@@ -1,5 +1,4 @@
 <script setup>
-
     import { cloneDeep } from 'lodash'
 
     const formData = reactive({
@@ -42,8 +41,6 @@
         price_per_square: true,
         price_rent: true,
         period:true,
-        note_sale:  true,
-        note_rent:  true
     })
 
     const sub_type = [{id:1,name:'ດິນນາ'},{id:2,name:'ດິນສວນ'},{id:3,name:'ດິນປຸກສ້າງ'}]
@@ -55,58 +52,69 @@
     const unit = [{id:1,la_name:'ຕາແມັດ'},{id:2,la_name:'ເຮັກຕາ'},{id:3,la_name:'ໄຮ່'}]
     const ccy = [{id:1,name:'LAK'},{id:2,name:'USD'},{id:3,name:'THB'},{id:4,name:'CNY'}]
 
+    // function submit
+    const handdleSubmit = ()=>{
+        if(validateData()){
+            console.log('submit');
+            console.log(formData);
+            return true
+        }else{
+            console.log('can not submit')
+            return false
+        }
+    }
     // ຟັງຊັ້ນ validate
     const validateData = ()=>{
+        let ok = true
         if(formData.sub_type_id==''){
-            valid.sub_type_id=false
+            valid.sub_type_id=false;ok = false
         }
         if(formData.service_id==''){
-            valid.service_id=false
+            valid.service_id=false;ok = false
         }
         if(formData.province_id==''){
-            valid.province_id=false
+            valid.province_id=false;ok = false
         }
         if(formData.district_id==''){
-            valid.district_id=false
+            valid.district_id=false;ok = false
         }
         if(formData.village_id==''){
-            valid.village_id=false
+            valid.village_id=false;ok = false
         }
         if(formData.area_id==''){
-            valid.area_id=false
+            valid.area_id=false;ok = false
         }
         if(formData.link_location==''){
-            valid.link_location=false
+            valid.link_location=false;ok = false
         }
         if(formData.size_text==''){
-            valid.size_text=false
+            valid.size_text=false;ok = false
         }
         if(formData.shape_text==''){
-            valid.shape_text=false
+            valid.shape_text=false;ok = false
         }
         if(formData.square==''){
-            valid.square=false
+            valid.square=false;ok = false
         }
         // 
-        if(formData.total_price==''){
-            valid.total_price=false
-        }
-        if(formData.price_per_square==''){
-            valid.price_per_square=false
-        }
-        if(formData.note_sale==''){
-            valid.note_sale=false
+        if(formData.service_id!=2){
+            if(formData.total_price==''){
+                valid.total_price=false;ok = false
+            }
+            if(formData.price_per_square==''){
+                valid.price_per_square=false;ok = false
+            }
         }
         // 
-        if(formData.price_rent==''){
-            valid.price_rent=false
+        if(formData.service_id!=1){
+            if(formData.price_rent==''){
+                valid.price_rent=false;ok = false
+            }
+            if(formData.period==''){
+                valid.period=false;ok = false
+            }
         }
-        if(formData.period==''){
-            valid.period=false
-        }
-        if(formData.note_rent==''){
-            valid.note_rent=false
-        }
+        return ok
     }
 
     watch(formData,(newValue)=>{
@@ -119,7 +127,39 @@
         if(newValue.province_id != prev.province_id){
             valid.province_id=true
         }
-
+        if(newValue.district_id != prev.district_id){
+            valid.district_id=true
+        }
+        if(newValue.village_id != prev.village_id){
+            valid.village_id=true
+        }
+        if(newValue.area_id != prev.area_id){
+            valid.area_id=true
+        }
+        if(newValue.link_location != prev.link_location){
+            valid.link_location=true
+        }
+        if(newValue.size_text != prev.size_text){
+            valid.size_text=true
+        }
+        if(newValue.shape_text != prev.shape_text){
+            valid.shape_text=true
+        }
+        if(newValue.square != prev.square){
+            valid.square=true
+        }
+        if(newValue.total_price != prev.total_price){
+            valid.total_price=true
+        }
+        if(newValue.price_per_square != prev.price_per_square){
+            valid.price_per_square=true
+        }
+        if(newValue.price_rent != prev.price_rent){
+            valid.price_rent=true
+        }
+        if(newValue.period != prev.period){
+            valid.period=true
+        }
         prev = cloneDeep(newValue)
     },{deep:true})
 
@@ -149,6 +189,10 @@
         }
     }
     //--- ຈົບ function ສຳລັບຈັດການ ໂຕເລກ ---//
+    // ກຳນົດຟັງຊັ້ນໃຫ້ export ໃຫ້ແມ່ເຂົ້າເຖິງ
+    defineExpose({
+        handdleSubmit
+    })
 </script>
 
 <template>
@@ -281,7 +325,12 @@
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-3">
-                            <input type="text" v-model="formData.square" placeholder="400" class="input w-full text-right" :class="{'input-error': valid.square==false}"/>
+                            <input type="text" v-model="formData.square" 
+                                @keydown="onKeyDown" 
+                                @input="onInput('square', $event)" 
+                                placeholder="400" 
+                                class="input w-full text-right" :class="{'input-error': valid.square==false}"
+                            />
                         </div>
                         <div class="col-span-2">
                             <select class="select w-full" v-model="formData.unit_id">
@@ -294,14 +343,20 @@
                 </div>
             </div>
             <!-- 4 -->
-            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
+            <div v-show="formData.service_id!=2" class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ລາຄາລວມ(ສຳລັບຂາຍ) <span class="dao">*</span>:</label>
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-3">
-                            <input type="text" v-model="formData.total_price" @keydown="onKeyDown" @input="onInput('total_price', $event)" placeholder="1,500,000" class="input w-full text-right" />
+                            <input type="text" v-model="formData.total_price" 
+                                @keydown="onKeyDown" 
+                                @input="onInput('total_price', $event)" 
+                                placeholder="1,500,000" 
+                                class="input w-full text-right" :class="{'input-error': valid.total_price==false}"
+
+                            />
                         </div>
                         <div class="col-span-2">
                             <select class="select w-full" v-model="formData.total_price_ccy">
@@ -314,14 +369,19 @@
                 </div>
             </div>
             <!-- 5 -->
-            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
+            <div v-show="formData.service_id!=2" class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ລາຄາຕໍ່ຕາແມັດ(ສຳລັບຂາຍ) <span class="dao">*</span>:</label>
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-3">
-                            <input type="text" v-model="formData.price_per_square" @keydown="onKeyDown" @input="onInput('price_per_square', $event)" placeholder="250,000" class="input w-full text-right" />
+                            <input type="text" v-model="formData.price_per_square" 
+                                @keydown="onKeyDown" 
+                                @input="onInput('price_per_square', $event)" 
+                                placeholder="250,000" 
+                                class="input w-full text-right" :class="{'input-error': valid.price_per_square==false}"
+                            />
                         </div>
                         <div class="col-span-2">
                             <select class="select w-full" v-model="formData.price_per_square_ccy">
@@ -334,14 +394,19 @@
                 </div>
             </div>
             <!-- 6 -->
-            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
+            <div v-show="formData.service_id!=1" class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ລາຄາ(ສຳລັບເຊົ່າ) <span class="dao">*</span>:</label>
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-3">
-                            <input type="text" v-model="formData.price_rent" placeholder="2,500" class="input w-full text-right" />
+                            <input type="text" v-model="formData.price_rent" 
+                                @keydown="onKeyDown" 
+                                @input="onInput('price_rent', $event)" 
+                                placeholder="2,500" 
+                                class="input w-full text-right" :class="{'input-error': valid.price_rent==false}"
+                            />
                         </div>
                         <div class="col-span-2">
                             <select class="select w-full" v-model="formData.price_rent_ccy">
@@ -354,14 +419,19 @@
                 </div>
             </div>
             <!-- 7 -->
-            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
+            <div v-show="formData.service_id!=1" class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ໄລຍະເວລາ(ສຳລັບເຊົ່າ) <span class="dao">*</span>:</label>
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <div class="grid grid-cols-5 gap-2">
                         <div class="col-span-3">
-                            <input type="text" v-model="formData.period" placeholder="1" class="input text-center w-full" />
+                            <input type="text" v-model="formData.period" 
+                                @keydown="onKeyDown" 
+                                @input="onInput('period', $event)" 
+                                placeholder="1" 
+                                class="input text-center w-full" :class="{'input-error': valid.period==false}"
+                            />
                         </div>
                         <div class="col-span-2">
                             <select class="select w-full" v-model="formData.period_unit">
@@ -375,9 +445,9 @@
         </div>
     </div>
 
-    <div class="flex flex-col lg:flex-row gap-8 fontLao text-base mt-5">
+    <div class="flex flex-col lg:flex-row gap-8 fontLao text-base mt-5" :class="{'lg:flex-row-reverse':formData.service_id==2}">
         <div class="flex-1">
-            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center">
+            <div v-show="formData.service_id!=2" class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ລາຍລະອຽດ(ສຳລັບຂາຍ) :</label>
                 </div>
@@ -387,7 +457,7 @@
             </div>
         </div>
         <div class="flex-1">
-            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center">
+            <div v-show="formData.service_id!=1" class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ລາຍລະອຽດ(ສຳລັບເຊົ່າ) :</label>
                 </div>
@@ -396,9 +466,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <button @click="validateData" class="btn btn-warning">check</button>
     </div>
 </template>
 
