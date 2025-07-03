@@ -1,4 +1,5 @@
 <script setup>
+
     import { cloneDeep } from 'lodash'
 
     const formData = reactive({
@@ -188,6 +189,7 @@
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <select class="select w-full" :class="{'select-error': valid.province_id==false}" v-model="formData.province_id">
+
                         <option disabled value="">ກະລຸນາເລືອກ</option>
                         <option v-for="option in province" :value="option.id">
                             {{ option.lao_name }}
@@ -230,6 +232,7 @@
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <select class="select w-full" :class="{'select-error': valid.area_id==false}" v-model="formData.area_id">
+
                         <option disabled value="">ກະລຸນາເລືອກ</option>
                         <option v-for="option in area" :value="option.id">
                             {{ option.name }}
