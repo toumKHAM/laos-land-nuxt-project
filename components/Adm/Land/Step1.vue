@@ -1,4 +1,6 @@
 <script setup>
+    const toast = useToastStore()
+    console.log(toast.visible);
     import { cloneDeep } from 'lodash'
 
     const formData = reactive({
@@ -58,7 +60,9 @@
             console.log('submit');
             console.log(formData);
             return true
+            
         }else{
+            toast.show('ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບ', 'error')
             console.log('can not submit')
             return false
         }
@@ -196,6 +200,7 @@
 </script>
 
 <template>
+    <Toast />
     <div class="flex flex-col lg:flex-row gap-8 fontLao text-base">
         <div class="flex-1">
             <!-- 1 -->
@@ -467,6 +472,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 
