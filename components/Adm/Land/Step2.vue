@@ -55,7 +55,6 @@
     }
     // -- ຈົບ ສຳລັບ ຮູບພາບແລະວີດີໂອດິນ -- //
     // -- ສຳລັບ key word tag -- //
-
     const input_tag = ref('')
     const addTag = () => {
         const newTag = input_tag.value.trim().replace(',', '')
@@ -161,12 +160,18 @@
             
         }else{
             toast.show('ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບ', 'error')
-            console.log('----can not submit----')
+            console.log('can not submit')
             console.log(formData);
             return false
         }
     }
 
+    //--- function ສຳລັບຈັດການ ໂຕເລກ ---//
+    const onInput = (key, event) => {
+        let val = event.target.value.replace(/[^0-9\-]/g, '')
+        formData[key] = val
+    }
+    //--- ຈົບ function ສຳລັບຈັດການ ໂຕເລກ ---//
 
 
     // ກຳນົດຟັງຊັ້ນໃຫ້ export ໃຫ້ແມ່ເຂົ້າເຖິງ
@@ -187,6 +192,8 @@
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <input type="text" 
                         v-model="formData.land_address"
+                        @input="onInput('land_address', $event)" 
+                        maxlength="10"
                         placeholder="010050058" 
                         class="input w-full" 
                         :class="{'input-error': valid.land_address==false}"
@@ -201,6 +208,8 @@
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
                     <input type="text" 
                         v-model="formData.land_number"
+                        @input="onInput('land_number', $event)" 
+                        maxlength="10"
                         placeholder="0273" 
                         class="input w-full" 
                         :class="{'input-error': valid.land_number==false}"

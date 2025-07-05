@@ -3,6 +3,7 @@
         title: 'Admin LaosLand | ເພີ່ມຂໍ້ມູນດິນ'
     })
     const layoutStore = useLayoutStore()
+    const router = useRouter()
     onMounted(()=>{
         layoutStore.changeTitle('ເພີ່ມດິນ',['ຜະລິດຕະພັນ','ຈັດການຂໍ້ມູນດິນ','ເພີ່ມດິນ'])
     })
@@ -35,8 +36,10 @@
     }
     const clickSave = ()=>{
         if(step3Ref.value?.handdleSubmit() == true){
-            Swal.fire('ສຳເລັດ!', 'ຂໍ້ມູນໄດ້ຖືກບັນທຶກແລ້ວ.', 'success')
-            activeStep.value = 'step1'
+            Swal.fire('ສຳເລັດ!', 'ຂໍ້ມູນໄດ້ຖືກບັນທຶກແລ້ວ.', 'success').then(()=>{
+                router.push('/admin/v1/product/land/all_land') // ປ່ຽນໄປຫາໜ້າ 
+            })
+            // activeStep.value = 'step1'
         }
         
     }
