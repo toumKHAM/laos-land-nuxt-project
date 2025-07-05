@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useToastStore = defineStore('toast', {
   state: () => ({
     message: '',
-    type: 'success', // success, error, warning, info
+    type: 'error', // success, error, warning, info
     visible: false
   }),
   actions: {

@@ -67,18 +67,41 @@
     const removeAvt = (index) => {
         avts.value.splice(index, 1)
     }
+
+    // ---- formData for submit ---- //
+    const formData = reactive({
+        land_address: '',
+        land_number: '',
+        land_number_date: '',
+        land_number_picture: '',
+        thumbnail: '',
+        note: '',
+        keyword: '',
+        img_video: [],
+        avt: [],
+        test:''
+    })
 </script>
 
 <template>
     <div class="flex flex-col lg:flex-row gap-8 fontLao text-base">
         <div class="flex-1">
-            <!-- 1 -->
+            <!-- 1.1 -->
             <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center">
+                <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
+                    <label>ລະຫັດທີ່ຕັ້ງຕອນດິນ(ໃບຕາດິນ) <span class="dao">*</span>:</label>
+                </div>
+                <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
+                    <input type="text" placeholder="010050058" class="input w-full" />
+                </div>
+            </div>
+            <!-- 1.2 -->
+            <div class="flex flex-col md:gap-3 xl:gap-3 md:flex-row lg:flex-col xl:flex-row xl:items-center mt-3">
                 <div class="flex-1 text-left md:flex-2 md:text-right lg:flex-1 lg:text-left xl:flex-2 xl:text-right">
                     <label>ເລກທີໃບຕາດິນ <span class="dao">*</span>:</label>
                 </div>
                 <div class="flex-1 md:flex-3 lg:flex-1 xl:flex-3">
-                    <input type="text" placeholder="" class="input w-full" />
+                    <input type="text" placeholder="0273" class="input w-full" />
                 </div>
             </div>
             <!-- 2 -->

@@ -1,6 +1,5 @@
 <script setup>
     const toast = useToastStore()
-    console.log(toast.visible);
     import { cloneDeep } from 'lodash'
 
     const formData = reactive({
